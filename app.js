@@ -10,6 +10,9 @@ todoButton.addEventListener('click', addToDo);
 todoList.addEventListener('click', deleteCheck);
 // filterOption.addEventListener('click', filterToDo);
 
+window.onload = function() {
+  localStorage.clear();
+}
 
 //Functions
 function addToDo(event){
@@ -47,6 +50,15 @@ function addToDo(event){
 
 function deleteCheck(event){
   const item = event.target;
+  const cactus = document.getElementById('cactus');
+  const aloe = document.getElementById('aloe');
+  const lents = document.getElementById('succulents');
+  const tallCactus = document.getElementById('tall-cactus');
+  const cactusFlower = document.getElementById('Flower-Copy');
+  
+  let num = document.querySelectorAll('.completed').length;
+  let num2 = document.getElementsByClassName('completed').length;
+
   //deleteCheck
   if(item.classList[0] === 'trash-button'){
     const todo = item.parentElement;
@@ -55,25 +67,17 @@ function deleteCheck(event){
     removeLocalToDos(todo);
     todo.addEventListener('transitionend', function(){
       todo.remove();
+      num = document.querySelectorAll(".completed").length;
     });
   }
-
-  const cactus = document.getElementById('cactus');
-  const aloe = document.getElementById('aloe');
-  const lents = document.getElementById('succulents');
-  const tallCactus = document.getElementById('tall-cactus');
-  const cactusFlower = document.getElementById('Flower-Copy');
-  let num = document.querySelectorAll('.completed').length;
-  let num2 = document.getElementsByClassName('completed').length;
-
  
   // Checkmark
   if(item.classList[0] === "complete-button"){
     const todo = item.parentElement;
     todo.classList.toggle('completed');
-    console.log(num);
-    console.log(num2);
+    num = document.querySelectorAll(".completed").length;
   }
+
   if(num === 0){
     cactus.style.transform = 'translate(11%, 35%) scale(0)';
     aloe.style.transform = 'translate(57%, 57%) scale(0)';
@@ -125,32 +129,6 @@ function deleteCheck(event){
 
 }
 
-
-
-function filterToDo(e){
-  const todos = todoList.childNodes;
-  for(let i = 1; i<todos.length; i++ ){
-        switch (e.target.value) {
-            case "all":
-                todos[i].style.display = "flex";
-                break;
-            case "completed":
-                if (todos[i].classList.contains('completed')) {
-                    todos[i].style.display = "flex";
-                } else {
-                    todos[i].style.display = "none";
-                }
-                break;
-            case "uncompleted":
-                if (!todos[i].classList.contains('completed')) {
-                    todos[i].style.display = "flex";
-                } else {
-                    todos[i].style.display = "none";
-                }
-                break;
-        }
-    }
-}
 
 //Save to local storage
 function saveLocalToDos(todo){
@@ -208,7 +186,7 @@ function removeLocalToDos(todo){
     todos = JSON.parse(localStorage.getItem('todos'));
   }
   const todoIndex = todo.children[0].innerText;
-  todos.splice(todos.indexOf(todoIndex), 1);
+  todos.splice(todos.indexOf(todoIndex), 0);
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
@@ -220,20 +198,6 @@ const plants = document.querySelectorAll('svg');
 const cactus = document.getElementById('cactus');
 const grow = document.getElementById('container');
 
-// console.log(cactus.dataset)
 
-function growPlant(){
-  let todos = todoList.childNodes;
-
-  if (saveLocalToDos())
-  if(todos == 0){
-      
-  }
-  if(todos == 1){
-      
-  }
-}
-
-// console.log(todoList.childNodes);
 
 

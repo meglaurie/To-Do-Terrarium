@@ -73,6 +73,7 @@ function deleteCheck(event){
     todo.classList.toggle('completed');
     console.log(num);
     console.log(num2);
+
   }
   if(num === 0){
     cactus.style.transform = 'translate(11%, 35%) scale(0)';
@@ -222,18 +223,18 @@ const grow = document.getElementById('container');
 
 // console.log(cactus.dataset)
 
-function growPlant(){
-  let todos = todoList.childNodes;
+// function growPlant(){
+//   let todos = todoList.childNodes;
 
-  if (saveLocalToDos())
-  if(todos == 0){
+//   if (saveLocalToDos())
+//   if(todos == 0){
       
-  }
-  if(todos == 1){
+//   }
+//   if(todos == 1){
       
-  }
-}
+//   }
+// }
 
-// console.log(todoList.childNodes);
+console.log(todoList.childNodes);
 
 
